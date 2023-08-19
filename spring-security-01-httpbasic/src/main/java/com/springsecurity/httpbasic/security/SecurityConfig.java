@@ -13,11 +13,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
-@Configuration(proxyBeanMethods = false)
+@Configuration
 public class SecurityConfig {
 	
 	//책임_저장소에서 해당 유저가 존재하는지 확인 및 유저 권한 조회
-	@Bean
+	@Bean("userDetailsService")
 	UserDetailsService userDetailsService() {
 		var userDetailsService = new InMemoryUserDetailsManager();	
 		userDetailsService.createUser(
@@ -31,7 +31,7 @@ public class SecurityConfig {
 		return userDetailsService;
 	}
 	//책임_Password를 해싱, 입력된 Password를 해싱된 password와 비교하여 일치하는지 확인
-	@Bean
+	@Bean("passwordEncoder")
 	PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
@@ -44,9 +44,6 @@ public class SecurityConfig {
 			);
 		//인증 활성화
 		http.httpBasic(Customizer.withDefaults());
-		
-		//커스텀 인증 제공자 등록
-		http.authenticationProvider(new CustomAuthenticationProvider());
 		
 		return http.build();
 	}

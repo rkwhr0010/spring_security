@@ -51,5 +51,4 @@ class SpringSecurity01ApplicationTests {
 		String password = "12345";
 		assertThat(encoder.matches(password, encoder.encode(password))).isEqualTo(Boolean.TRUE);
 	}
-	
 }
