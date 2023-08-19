@@ -45,6 +45,9 @@ public class SecurityConfig {
 		//인증 활성화
 		http.httpBasic(Customizer.withDefaults());
 		
+		//커스텀 인증 제공자 등록
+		http.authenticationProvider(new CustomAuthenticationProvider());
+		
 		return http.build();
 	}
 }
