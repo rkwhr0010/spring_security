@@ -1,10 +1,10 @@
-package com.laurentiuspilca.ssia;
+package com.springsecurity.user;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Test1ApplicationTests {
+class UserApplicationTests {
 
 	@Test
 	void contextLoads() {
